@@ -1,5 +1,16 @@
-from nerscrap import __version__
+from fastapi.testclient import TestClient
+from nerscrap.main import app
 
 
-def test_version():
-    assert __version__ == '0.1.0'
+client = TestClient(app)
+
+URLS = [
+    'https://google.com',
+    'http://yakshi.uno'
+]
+
+
+def test_phones():
+    response = client.get("/phones", json={'urls': URLS})
+    assert response.status_code == 200
+    # assert response.json() == {'phones': []}
