@@ -5,8 +5,11 @@ from nerscrap.main import app
 client = TestClient(app)
 
 URLS = [
-    'https://google.com',
-    'http://yakshi.uno'
+    # 'https://google.com',
+    # 'http://yakshi.uno',
+    # 'https://hands.ru/company/about',
+    # 'https://repetitors.info',
+    'https://rosreestr.gov.ru/site/'
 ]
 
 
