@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 from fastapi import FastAPI, Request
 
 from filters.core import filter_css, filter_js, filter_footer, filter_navbar
-from recognition.phones.ner import recognize_phones
-from recognition.phones.regex import extract_phone_numbers
+from extractors.phones.ner import NERPhonesExtractor
+from extractors.phones.regex import RegexPhonesExtractor
 
 app = FastAPI()
 
@@ -34,7 +34,7 @@ async def get_phones(request: Request) -> List[str]:
         #
         # content = content_extractor.extract(url).cleaned_text
 
-        phones = extract_phone_numbers(content)
-        # phones = recognize_phones(content)
-        results.append(phones)
+        phones = RegexPhonesExtractor.extract_phones(content)
+        # phones = NERPhonesExtractor.extract_phones(content)
+        results += phones
     return results
